@@ -1,0 +1,40 @@
+type Query {
+    yearsTest(yearFilter: String): [Year]
+    makesTest(makeFilter: String): [Make]
+    years(yearFilter: String): [Year]
+    makes(makeFilter: String): [Make]
+    models(modelFilter: String): [Model]
+    subModels(subModelFilter: String): [SubModel]
+    baseVehicles(baseVehId: Int): [BaseVehicle]
+    baseVehicleContexts(baseVehId: Int): [BaseVehicle]
+
+    headers(id: Int): String
+    referer(id: Int): String
+}
+
+type Year @key(fields: "yearId"){
+    yearId: Int
+    year: String
+}
+
+type Make @key(fields: "makeId") {
+    makeId: Int
+    makeName: String
+}
+
+type Model @key(fields: "modelId") {
+    modelId: Int
+    modelName: String
+}
+
+type SubModel @key(fields: "subModelId") {
+    subModelId: Int
+    subModelName: String
+}
+
+type BaseVehicle @key(fields: "baseVehicleId") {
+    baseVehicleId: Int
+    yearId: Int
+    makeId: Int
+    modelId: Int
+}

@@ -1,0 +1,44 @@
+type Query {
+    laborOperations(baseVehId: Int): [LaborOperation]
+    footnotes(baseVehId: Int): [Footnote]
+    partTerminologys (baseVehId: Int, subGroupId: Int): [PartTerminology]
+    laborOpEfforts (baseVehId: Int, subGroupId: Int): [LaborOpEffort]
+    laborVertices (baseVehId: Int): [LaborVertice]
+}
+
+type LaborOperation {
+    operationID: Int
+    description: String
+    literalName: String
+}
+
+type Footnote {
+    footnoteID: Int
+    footnoteDescription: String
+}
+
+type PartTerminology {
+    partTerminologyID: Int
+    name: String
+}
+
+type Effort {
+    effortGUID: String
+    skillCode: String
+    baseEstWorkTime: String
+}
+
+type LaborOpEffort {
+    laborOperations: [LaborOperation]
+    efforts: [Effort]
+}
+
+type BaseVehicle @key(fields: "baseVehicleId") @extends {
+    baseVehicleId: Int @external
+    laborOperations: [LaborOperation]
+}
+
+type LaborVertice {
+    id: String
+    label: String
+}
